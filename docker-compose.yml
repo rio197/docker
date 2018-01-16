@@ -1,0 +1,10 @@
+services:
+     web:
+        image: "mmumshad/simple-webapp"
+        ports:
+             - "80:5000"
+
+     database:
+        image: "mysql"
+        volumes:
+             - /opt/data:/var/lib/mysql 
