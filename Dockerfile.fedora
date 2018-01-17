@@ -1,0 +1,14 @@
+FROM fedora-httpd
+MAINTAINER A D Ministator email: admin@corp.example.com
+
+# Add the tar file of the web site 
+ADD mysite.tar /tmp/
+#ADD index.html.gz /tmp/
+
+# Docker automatically extracted. So move files to web directory
+RUN mv /tmp/index.html /var/www/html
+
+EXPOSE 80
+
+ENTRYPOINT [ "/usr/sbin/httpd" ]
+CMD [ "-D", "FOREGROUND" ]
