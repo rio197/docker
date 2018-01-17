@@ -1,4 +1,5 @@
 FROM centos
+
 LABEL maintainer="admin@mycorp.com"
 
 # Update the image with the latest packages
