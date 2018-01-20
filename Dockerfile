@@ -1,23 +1,11 @@
 FROM centos
 
-LABEL maintainer="admin@mycorp.com"
+RUN yum update -y
 
-# Update the image with the latest packages
-RUN yum update -y; 
+RUN yum install -y epel-release && yum install -y python-pip
 
-# Install Apache Web Server
-RUN yum install -y httpd 
+RUN pip install flask flask-mysql
 
-# Clean yum cache
-RUN yum clean all
+#COPY . /opt/source/code
 
-# Add the tar file of the web site 
-ADD mysite.tar /tmp/
-
-# Docker automatically extracted. So move files to web directory
-RUN mv /tmp/index.html /var/www/html
-
-EXPOSE 80
-
-ENTRYPOINT [ "/usr/sbin/httpd" ]
-CMD [ "-D", "FOREGROUND" ]
+#ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run
